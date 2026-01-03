@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>کتاب‌خوان | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fdfdfb;color:#2c2c2c;line-height:1.8}
+a{text-decoration:none;color:inherit}
+
+/* نوار مشترک */
+header{background:linear-gradient(135deg,#9b59b6,#8e44ad);color:#fff;padding:25px 50px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:18px}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a{margin-right:18px;color:#fff;font-weight:600;text-decoration:none;font-size:16px}
+nav a:hover{text-decoration:underline}
+
+/* نوار پایین بخش کتاب‌خوان */
+.sub-nav{background:#d8b6f0;text-align:center;padding:12px;margin-bottom:20px;font-weight:700;font-size:18px;color:#000}
+
+/* بخش‌ها */
+.section{padding:40px;max-width:900px;margin:auto}
+.book-card, .article-card, .novel-card, .literature-card{background:#fff0f5;padding:15px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.08);margin-bottom:20px;text-align:right}
+.book-card img{width:120px;height:160px;object-fit:cover;border-radius:12px;margin-left:15px}
+.book-card h3, .article-card h3, .novel-card h3, .literature-card h3{margin:0 0 8px 0}
+.book-container, .article-container, .novel-list, .literature-list{display:flex;flex-wrap:wrap;gap:15px}
+
+button.main-btn{background:#9b59b6;color:#fff;border:none;padding:10px 22px;border-radius:20px;cursor:pointer;margin-top:10px}
+a.download-link{text-decoration:none;color:#9b59b6;font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav>
+<a href="index.html">خانه</a>
+<a href="health.html">سلامت</a>
+<a href="memory.html">ذهن و حافظه</a>
+<a href="fun.html">سرگرمی</a>
+<a href="books.html">کتاب‌خوان</a>
+<a href="contact.html">ارتباط</a>
+<a href="about.html">درباره ما</a>
+<a href="profile.html">پروفایل</a>
+</nav>
+</header>
+
+<div class="sub-nav">📚 بخش کتاب‌خوان</div>
+
+<!-- بخش ۱: معرفی کتاب‌ها -->
+<section class="section">
+<h2>کتاب‌های پیشنهادی</h2>
+<div class="book-container">
+<div class="book-card">
+<img src="assets/images/book1.jpg" alt="کتاب روانشناسی سالمندی">
+<h3>روانشناسی سالمندی</h3>
+<p>این کتاب راهنمایی برای سالمندان است تا با تغییرات دوران پیری آشنا شوند و آرامش و اعتمادبه‌نفس خود را حفظ کنند.</p>
+</div>
+<div class="book-card">
+<img src="assets/images/book2.jpg" alt="کتاب کنار آمدن با سالمندی">
+<h3>کنار آمدن با سالمندی</h3>
+<p>این کتاب به شما کمک می‌کند تا با مشکلات جسمی و روانی دوران سالمندی به شیوه‌ای مثبت و سازنده برخورد کنید.</p>
+</div>
+<div class="book-card">
+<img src="assets/images/book3.jpg" alt="کتاب انسان خردمند">
+<h3>انسان خردمند</h3>
+<p>این کتاب مروری بر تاریخ و تکامل انسان است و می‌تواند به فهم بهتر جامعه و محیط پیرامون کمک کند.</p>
+</div>
+<div class="book-card">
+<img src="assets/images/book4.jpg" alt="کتاب کمال ذهن">
+<h3>کمال ذهن</h3>
+<p>این کتاب تمرکز بر توانایی‌های ذهنی و روش‌های بهبود عملکرد مغز دارد و مناسب سالمندان علاقه‌مند به پرورش ذهن است.</p>
+</div>
+<div class="book-card">
+<img src="assets/images/book5.jpg" alt="کتاب قدرت عادت">
+<h3>قدرت عادت</h3>
+<p>این کتاب به شما کمک می‌کند تا عادات مثبت بسازید و سبک زندگی سالم و منظمی داشته باشید.</p>
+</div>
+</div>
+</section>
+
+<!-- بخش ۲: مقالات -->
+<section class="section">
+<h2>مقالات</h2>
+<div>
+<button class="main-btn" onclick="showArticles('heart')">سلامت قلب</button>
+<button class="main-btn" onclick="showArticles('bp')">فشارخون</button>
+<button class="main-btn" onclick="showArticles('diabetes')">دیابت</button>
+<button class="main-btn" onclick="showArticles('alz')">الزایمر</button>
+</div>
+<div id="articleContainer" class="article-container" style="margin-top:20px"></div>
+</section>
+
+<!-- بخش ۳: رمان -->
+<section class="section">
+<h2>رمان‌ها</h2>
+<div class="novel-list">
+<div class="novel-card"><h3>رمان یک: آخرین بت</h3><a href="assets/novels/novel1.pdf" class="download-link" download>دانلود PDF</a></div>
+<div class="novel-card"><h3>رمان دو: رویای قاصدک</h3><a href="assets/novels/novel2.pdf" class="download-link" download>دانلود PDF</a></div>
+<div class="novel-card"><h3>رمان سه: حوالی کیلومتر دوازده</h3><a href="assets/novels/novel3.pdf" class="download-link" download>دانلود PDF</a></div>
+</div>
+</section>
+
+<!-- بخش ۴: گنجینه ادب فارسی -->
+<section class="section">
+<h2>گنجینه ادب فارسی</h2>
+<div class="literature-list">
+<div class="literature-card">
+<h3>گلستان سعدی</h3>
+<a href="assets/books/classic/golestan.pdf" class="download-link" download>دانلود PDF</a>
+</div>
+<div class="literature-card">
+<h3>مثنوی معنوی</h3>
+<a href="assets/books/classic/masnavi.pdf" class="download-link" download>دانلود PDF</a>
+</div>
+<div class="literature-card">
+<h3>شاهنامه</h3>
+<a href="assets/books/classic/shahnameh.pdf" class="download-link" download>دانلود PDF</a>
+</div>
+</div>
+</section>
+
+<script>
+// داده مقالات
+const articles = {
+heart:[
+{title:"سلامت قلب ۱",file:"assets/articles/heart1.pdf"},
+{title:"سلامت قلب ۲",file:"assets/articles/heart2.pdf"},
+{title:"سلامت قلب ۳",file:"assets/articles/heart3.pdf"}
+],
+bp:[
+{title:"فشارخون ۱",file:"assets/articles/bp1.pdf"},
+{title:"فشارخون ۲",file:"assets/articles/bp2.pdf"},
+{title:"فشارخون ۳",file:"assets/articles/bp3.pdf"}
+],
+diabetes:[
+{title:"دیابت ۱",file:"assets/articles/diabetes1.pdf"},
+{title:"دیابت ۲",file:"assets/articles/diabetes2.pdf"},
+{title:"دیابت ۳",file:"assets/articles/diabetes3.pdf"}
+],
+alz:[
+{title:"الزایمر ۱",file:"assets/articles/alz1.pdf"},
+{title:"الزایمر ۲",file:"assets/articles/alz2.pdf"},
+{title:"الزایمر ۳",file:"assets/articles/alz3.pdf"}
+]
+};
+
+// نمایش مقالات بر اساس موضوع
+function showArticles(topic){
+const container = document.getElementById('articleContainer');
+container.innerHTML = "";
+articles[topic].forEach(a=>{
+container.innerHTML += `<div class="article-card"><h3>${a.title}</h3><a href="${a.file}" class="download-link" download>دانلود PDF</a></div>`;
+});
+}
+</script>
+
+</body>
+</html>

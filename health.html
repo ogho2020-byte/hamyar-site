@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>سلامت و تحرک | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fff0f5;color:#2c2c2c;line-height:1.8}
+header{background:linear-gradient(135deg,#ffd6e0,#ffb3c6);color:#fff;padding:25px 50px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a{margin-right:18px;color:#fff;font-weight:600;text-decoration:none}
+nav a:hover{text-decoration:underline}
+nav button{background:#ff2f6e;color:#fff;border:none;padding:8px 18px;border-radius:20px;cursor:pointer;margin-right:10px}
+
+section{padding:50px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
+.card{background:#fff;padding:20px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.08);position:relative;overflow:hidden}
+.card.done::after{
+content:"✔";position:absolute;top:15px;left:15px;background:#4CAF50;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+.circle{width:40px;height:40px;border-radius:50%;background:#ff6f91;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:10px}
+
+.event{background:#fff;padding:18px;border-radius:18px;display:flex;gap:15px;margin-bottom:18px;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.08)}
+.event img{width:70px;height:70px;border-radius:12px;object-fit:cover}
+
+.main-btn{background:#ff6f91;color:#fff;border:none;padding:10px 22px;border-radius:20px;cursor:pointer;margin-top:10px}
+
+.progress{display:flex;gap:10px;margin-top:15px}
+.day{flex:1;height:10px;border-radius:10px;background:#ffd6e0}
+.day.active{background:#4CAF50}
+
+.relax-box{background:#fff;border-radius:20px;padding:25px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.08)}
+.relax-img{width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:10px}
+
+.chat-box{background:#fff;border-radius:20px;padding:20px;box-shadow:0 10px 20px rgba(0,0,0,0.08);max-width:700px;margin:30px auto}
+.chat-header{font-weight:700;margin-bottom:10px}
+.chat-messages{height:200px;overflow-y:auto;border:1px solid #ccc;border-radius:12px;padding:10px;margin-bottom:10px;background:#fdf0f8}
+.chat-input{display:flex;gap:10px}
+.chat-input input{flex:1;padding:10px;border-radius:15px;border:1px solid #ccc;font-size:16px}
+.chat-input button{padding:10px 18px;border:none;background:#ff6f91;color:#fff;border-radius:15px;cursor:pointer}
+
+input.small{width:80px;padding:8px;margin-right:10px;border-radius:12px;border:1px solid #ccc}
+video{width:100%;border-radius:12px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav>
+<a href="index.html">خانه</a>
+<a href="health.html">سلامت</a>
+<a href="memory.html">ذهن و حافظه</a>
+<a href="fun.html">سرگرمی</a>
+<a href="books.html">کتاب‌خوان</a>
+<a href="contact.html">ارتباط</a>
+<a href="about.html">درباره ما</a>
+<a href="profile.html">پروفایل</a>
+</nav>
+</header>
+
+<!-- نوار زیر نوار مشترک -->
+<div style="
+background:#ffd6e0;
+text-align:center;
+padding:14px;
+font-weight:700;
+font-size:18px;
+color:#000;
+">
+🏋️ بخش سلامت و تحرک
+</div>
+
+<!-- ویدئوهای تمرینی -->
+<section>
+<h2>ویدئوهای تمرینی</h2>
+<button class="main-btn" onclick="resetAll()">پاک کردن همه تیک‌ها</button>
+<div class="cards" id="videos"></div>
+</section>
+
+<!-- تمرین‌های پیشنهادی -->
+<section>
+<h2>تمرین‌های پیشنهادی (۷ روزه)</h2>
+<input placeholder="سن" id="age" class="small">
+<input placeholder="قد (cm)" id="height" class="small">
+<input placeholder="وزن (kg)" id="weight" class="small">
+<button class="main-btn" onclick="loadPlan()">دریافت برنامه</button>
+<div id="plan"></div>
+<div class="progress" id="progress"></div>
+</section>
+
+<!-- رویدادهای آینده -->
+<section>
+<h2>رویدادهای آینده</h2>
+
+<div class="event" onclick="openEvent('جمعه صبح ساعت ۹ – پارک لاله')">
+<img src="assets/images/walking.jpg" alt="پیاده‌روی گروهی">
+<div><h3>جمعه صبح ساعت ۹ – پارک لاله</h3><p>پیاده‌روی گروهی</p></div>
+</div>
+
+<div class="event" onclick="openEvent('یکشنبه عصر ساعت ۵ – پارک جمهوری')">
+<img src="assets/images/chess.jpg" alt="شطرنج">
+<div><h3>یکشنبه عصر ساعت ۵ – پارک جمهوری</h3><p>شطرنج و فعالیت‌های ذهنی</p></div>
+</div>
+
+<div class="event" onclick="openEvent('چهارشنبه صبح ساعت ۸ – پارک صفه')">
+<img src="assets/images/group.jpg" alt="تمرین گروهی">
+<div><h3>چهارشنبه صبح ساعت ۸ – پارک صفه</h3><p>تمرین گروهی</p></div>
+</div>
+
+<div class="event" onclick="openEvent('پنجشنبه ساعت ۱۰ صبح – دورهمی')">
+<img src="assets/images/gathering.jpg" alt="دورهمی">
+<div><h3>پنجشنبه ساعت ۱۰ صبح – دورهمی</h3><p>دورهمی و گفت‌وگو دوستانه</p></div>
+</div>
+
+</section>
+
+<!-- آرام‌بخش همیار -->
+<section>
+<h2>آرام‌بخش همیار</h2>
+<div class="relax-box">
+<img id="relaxImg" class="relax-img">
+<p id="relaxText"></p>
+<button class="main-btn" onclick="finishRelax()">انجام شد</button>
+<button class="main-btn" onclick="toggleMusic()" id="musicBtn">پخش / توقف موسیقی</button>
+<audio id="music" src="assets/music/relax.mp3" loop></audio>
+</div>
+</section>
+
+<!-- چت با مربی -->
+<section>
+<h2>چت با مربی</h2>
+<div class="chat-box">
+<div class="chat-header">پیام‌های مربی</div>
+<div class="chat-messages" id="chatMessages">
+<div>مربی: سلام! امروز تمریناتت را انجام دادی؟</div>
+<div>مربی: به یاد داشته باش روزانه آب کافی بنوشی.</div>
+</div>
+<div class="chat-input">
+<input type="text" id="chatInput" placeholder="پیام شما">
+<button onclick="sendMessage()">ارسال</button>
+</div>
+</div>
+</section>
+
+<script>
+/* ویدئوها */
+const videos=["تمرین اول","تمرین دوم","تمرین سوم","تمرین چهارم","تمرین پنجم","تمرین ششم","تمرین هفتم","تمرین هشتم","تمرین نهم","تمرین دهم"];
+const videoFiles=["exercise-one.mp4","exercise-two.mp4","exercise-three.mp4","exercise-four.mp4","exercise-five.mp4","exercise-six.mp4","exercise-seven.mp4","exercise-eight.mp4","exercise-nine.mp4","exercise-ten.mp4"];
+const videoBox=document.getElementById("videos");
+videos.forEach((v,i)=>{
+let d=document.createElement("div");
+d.className="card";
+if(localStorage.getItem("v"+i)) d.classList.add("done");
+d.innerHTML=`
+<div class="circle">${i+1}</div>
+<h3>${v}</h3>
+<video controls onended="finishVideo(${i},this)">
+<source src="assets/videos/${videoFiles[i]}" type="video/mp4">
+</video>`;
+videoBox.appendChild(d);
+});
+function finishVideo(i,el){
+localStorage.setItem("v"+i,1);
+el.parentElement.classList.add("done");
+}
+
+/* تمرین پیشنهادی */
+const exercises=[
+["۱۰ دقیقه پیاده‌روی درجا","۱۰ حرکت کششی ملایم","۵ دقیقه تنفس عمیق"],
+["۸–۱۰ دقیقه پیاده‌روی آرام","۱۰ حرکت تقویت مچ و شانه","۵ دقیقه یوگا سبک"],
+["۱۰ دقیقه حرکات پا و لگن","۱۰ حرکت کشش گردن و پشت","۵ دقیقه تنفس آگاهانه"],
+["۱۰ دقیقه پیاده‌روی درجا","۱۰ حرکت بازو و شانه","۵ دقیقه یوگا سبک"],
+["۸–۱۰ دقیقه پیاده‌روی آرام","۱۰ حرکت کششی کامل بدن","۵ دقیقه تنفس عمیق"],
+["۱۰ دقیقه حرکات پا و لگن","۱۰ حرکت بازو و شانه","۵ دقیقه یوگا سبک"],
+["۱۰ دقیقه پیاده‌روی درجا","۱۰ حرکت کششی گردن و پشت","۵ دقیقه تنفس آگاهانه"]
+];
+
+function loadPlan(){
+const plan=document.getElementById("plan");
+plan.innerHTML="";
+for(let i=0;i<7;i++){
+let done=localStorage.getItem("day"+(i+1));
+plan.innerHTML+=`
+<div class="card ${done?'done':''}">
+<h3>روز ${i+1}</h3>
+<ul>
+<li>${exercises[i][0]}</li>
+<li>${exercises[i][1]}</li>
+<li>${exercises[i][2]}</li>
+</ul>
+<button class="main-btn" onclick="doneDay(${i+1},this)">انجام شد</button>
+</div>`;
+}
+renderProgress();
+}
+function doneDay(i,btn){
+localStorage.setItem("day"+i,1);
+btn.parentElement.classList.add("done");
+renderProgress();
+}
+function renderProgress(){
+const p=document.getElementById("progress");
+p.innerHTML="";
+for(let i=1;i<=7;i++){
+let d=document.createElement("div");
+d.className="day "+(localStorage.getItem("day"+i)?"active":"");
+p.appendChild(d);
+}
+}
+
+/* پاک کردن همه تیک‌ها */
+function resetAll(){
+for(let i=0;i<videos.length;i++) localStorage.removeItem("v"+i);
+for(let i=1;i<=7;i++) localStorage.removeItem("day"+i);
+document.querySelectorAll(".card.done").forEach(c=>c.classList.remove("done"));
+renderProgress();
+}
+
+/* آرام‌بخش */
+const imgs=["assets/images/relax1.jpg","assets/images/relax2.jpg","assets/images/relax3.jpg","assets/images/relax4.jpg","assets/images/relax5.jpg"];
+const texts=["نفس عمیق بکش","بدنت را رها کن","ذهن آرام","تمرکز روی حال","لبخند بزن"];
+let r=0;
+setInterval(()=>{
+document.getElementById("relaxImg").src=imgs[r];
+document.getElementById("relaxText").innerText=texts[r];
+r=(r+1)%5;
+},15000);
+
+function toggleMusic(){
+const m=document.getElementById("music");
+if(m.paused)m.play();
+else m.pause();
+}
+function finishRelax(){
+localStorage.setItem("relax",1);
+alert("آفرین 🌱 آرام‌سازی انجام شد");
+}
+
+/* رویدادها */
+function openEvent(info){
+let attendees="علی، محمد، زهرا و ۵۵ نفر دیگر در این رویداد شرکت میکنند.";
+let popup=document.createElement("div");
+popup.style.position="fixed";
+popup.style.top="0"; popup.style.left="0";
+popup.style.width="100%"; popup.style.height="100%";
+popup.style.background="rgba(0,0,0,0.5)";
+popup.style.display="flex"; popup.style.alignItems="center"; popup.style.justifyContent="center";
+popup.style.zIndex="9999";
+
+popup.innerHTML=`
+<div style="background:#fff;padding:25px;border-radius:20px;max-width:400px;width:90%;text-align:right">
+<h3>${info}</h3>
+<p>${attendees}</p>
+<label><input type="checkbox" id="friendComing"> دوستمم باهام میاد</label><br>
+<label><input type="checkbox" id="going"> شرکت در رویداد</label><br>
+<button class="main-btn" id="registerBtn">ثبت نام</button>
+</div>`;
+
+document.body.appendChild(popup);
+
+document.getElementById("registerBtn").onclick=function(){
+const goingChecked=document.getElementById("going").checked;
+if(goingChecked){
+alert("ممنون از همراهیت 💚 آدرس قرارمون برات ارسال میشه.");
+// تغییر رنگ پس‌زمینه رویداد به سبز بعد ثبت نام
+document.querySelectorAll(".event").forEach(ev=>{
+if(ev.querySelector("h3").innerText===info){
+ev.style.background="#d1ffd1";
+}
+});
+popup.remove();
+}
+};
+}
+
+/* چت با مربی */
+function sendMessage(){
+const input=document.getElementById("chatInput");
+const val=input.value.trim();
+if(!val) return;
+const chat=document.getElementById("chatMessages");
+const userDiv=document.createElement("div");
+userDiv.innerText="شما: "+val;
+chat.appendChild(userDiv);
+chat.scrollTop=chat.scrollHeight;
+input.value="";
+
+// پاسخ خودکار مربی اگر کاربر پیغام داد
+setTimeout(()=>{
+const coachDiv=document.createElement("div");
+coachDiv.innerText="مربی: عالیه، واقعاً خوشحال شدم 💚 نظرت چیه از این به بعد روزانه ده دقیقه یوگا کنیم؟ این کار باعث میشه همیشه ریلکس بمونی.";
+chat.appendChild(coachDiv);
+chat.scrollTop=chat.scrollHeight;
+},500);
+}
+</script>
+
+</body>
+</html>

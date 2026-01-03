@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ذهن و حافظه | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+body{
+font-family: Vazirmatn, sans-serif;
+background:#f3f8ff;
+margin:-20px;
+padding:20px;
+direction:rtl;
+}
+h2,h3{text-align:center;margin-bottom:15px;}
+/* هدر و نوار مشترک */
+header{
+background: linear-gradient(135deg,#1f4fd8,#3b6fe8); /* آبی پررنگ */
+color:#fff;
+padding:25px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+header h1{
+margin:0;
+font-size:18px; /* مثل بقیه صفحات */
+font-weight:800;
+}
+nav a{
+margin-right:20px;
+color:#fff;
+font-weight:700;
+font-size:18px; /* مثل بقیه صفحات */
+text-decoration:none;
+}
+nav a:hover{
+text-decoration:underline;
+}
+
+/* نوار زیر هدر */
+.sub-bar{
+background:#dbe9ff; /* آبی کم‌رنگ */
+text-align:center;
+padding:14px 10px;
+font-size:20px;
+font-weight:700;
+color:#000;
+}
+
+/* کارت‌ها حافظه */
+.memory-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+margin-bottom:20px;
+}
+.memory-card{
+aspect-ratio:0.9/1;
+border-radius:12px;
+cursor:pointer;
+background-size:cover;
+background-position:center;
+background-color:#ccc;
+}
+
+/* پازل تصویری */
+.puzzle-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+.puzzle-item{
+border:6px solid;
+border-radius:18px;
+overflow:hidden;
+}
+.puzzle-item img{
+width:100%;
+height:140px;
+object-fit:cover;
+}
+.word-list{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+margin-top:15px;
+}
+.word{
+padding:8px 16px;
+border-radius:20px;
+background:#eee;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* جدول حروف */
+.stage-title{text-align:center;font-weight:bold;margin-bottom:10px;}
+.letters{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:8px;
+max-width:320px;
+margin:auto;
+}
+.letter{
+background:#e0ebff;
+padding:15px;
+text-align:center;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* جدول اعداد */
+.math-question{text-align:center;font-size:20px;margin-bottom:10px;font-weight:bold;}
+.math-msg{text-align:center;color:#ff2f6e;margin-bottom:10px;font-weight:bold;}
+.number-grid{
+display:grid;
+grid-template-columns:repeat(10,1fr);
+gap:6px;
+max-width:500px;
+margin:auto;
+}
+.number{
+background:#4a90e2;
+color:white;
+padding:12px 0;
+text-align:center;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+.number.correct{background:#3cb371;}
+
+/* چت */
+.chat-box{display:flex;gap:10px;margin-top:10px;max-width:500px;margin:auto;}
+.chat-box input{
+flex:1;
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+.chat-box button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#ff7aa2;
+color:white;
+cursor:pointer;
+}
+
+/* بخش‌ها */
+.section{
+background:#fff;
+padding:20px;
+border-radius:20px;
+margin-bottom:40px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+.coach{display:flex;gap:15px;align-items:center;margin-top:15px;}
+.coach img{width:60px;height:60px;border-radius:50%;}
+.coach-msg{background:#e6f0ff;padding:10px 15px;border-radius:15px;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav>
+<a href="index.html">خانه</a>
+<a href="health.html">سلامت</a>
+<a href="memory.html">ذهن و حافظه</a>
+<a href="fun.html">سرگرمی</a>
+<a href="books.html">کتاب‌خوان</a>
+<a href="contact.html">ارتباط</a>
+<a href="about.html">درباره ما</a>
+<a href="profile.html" class="profile">پروفایل</a>
+</nav>
+</header>
+
+<div class="sub-bar">
+🧠 بخش ذهن و حافظه
+</div>
+
+<!-- حافظه -->
+<div class="section">
+<h3>🃏 بازی حافظه</h3>
+<div class="memory-grid" id="memory"></div>
+<div class="coach">
+<img src="assets/images/coach_photo.jpg">
+<div class="coach-msg" id="memoryMsg">کارت‌های مشابه رو پیدا کن 🌸</div>
+</div>
+</div>
+
+<!-- پازل -->
+<div class="section">
+<h3>🧩 پازل تصویری</h3>
+<div class="puzzle-grid" id="puzzleGrid"></div>
+<div class="word-list" id="words"></div>
+</div>
+
+<!-- جدول حروف -->
+<div class="section">
+<h3>🔤 جدول حروف</h3>
+<div class="stage-title" id="stageTitle"></div>
+<div class="letters" id="letters"></div>
+</div>
+
+<!-- جدول اعداد -->
+<div class="section">
+<h3>🔢 تمرین ریاضی</h3>
+<div class="math-msg" id="mathMsg"></div>
+<div class="math-question" id="mathQ"></div>
+<div class="number-grid" id="numbers"></div>
+</div>
+
+<!-- چت -->
+<div class="section">
+<h3>💬 چت با مربی</h3>
+<div class="chat-box">
+<input id="chatInput" placeholder="پیام شما...">
+<button onclick="sendMsg()">ارسال</button>
+</div>
+<div class="coach">
+<img src="assets/images/coach_photo.jpg">
+<div class="coach-msg" id="chatMsg">سلام 🌸 چه کمکی از من برمیاد؟</div>
+</div>
+</div>
+
+<script>
+function celebrate(){ confetti({particleCount:120,spread:90,origin:{y:0.6}}); }
+
+/* حافظه */
+let imgs=[];
+for(let i=1;i<=12;i++){imgs.push(i,i);}
+imgs.sort(()=>0.5-Math.random());
+let open=[];
+imgs.forEach(n=>{
+let d=document.createElement("div");
+d.className="memory-card";
+d.onclick=()=>{
+if(open.length<2 && !d.style.backgroundImage){
+d.style.backgroundImage=`url(assets/images/${n}.jpg)`;
+open.push({n,d});
+if(open.length===2){
+setTimeout(()=>{
+if(open[0].n!==open[1].n){
+open.forEach(o=>o.d.style.backgroundImage="");
+}else{
+celebrate();
+memoryMsg.innerText="آفرین 👏";
+}
+open=[];
+},700);
+}
+}
+}
+memory.appendChild(d);
+});
+
+/* پازل تصویری */
+const puzzles=[
+{img:"puzzle1.jpg",word:"بهار",color:"#2ecc71"},
+{img:"puzzle2.jpg",word:"پاییز",color:"#e67e22"},
+{img:"puzzle3.jpg",word:"آسمان",color:"#85c1e9"},
+{img:"puzzle4.jpg",word:"طاووس",color:"#e74c3c"},
+{img:"puzzle5.jpg","word":"ویلچر","color":"#f1c40f"},
+{img:"puzzle6.jpg","word":"دوچرخه","color":"#ff6fae"},
+{img:"puzzle7.jpg","word":"دکتر","color":"#82e0aa"},
+{img:"puzzle8.jpg","word":"دریا","color":"#3498db"}
+];
+const extraWords=["زمستان","کامپیوتر"];
+let wordsArr=[...puzzles.map(p=>p.word),...extraWords].sort(()=>0.5-Math.random());
+puzzles.forEach(p=>{
+let box=document.createElement("div");
+box.className="puzzle-item";
+box.style.borderColor=p.color;
+box.innerHTML=`<img src="assets/images/${p.img}">`;
+puzzleGrid.appendChild(box);
+});
+wordsArr.forEach(w=>{
+let el=document.createElement("div");
+el.className="word";
+el.innerText=w;
+el.onclick=()=>{
+const p=puzzles.find(x=>x.word===w);
+if(p){
+el.style.background=p.color;
+el.style.color="#fff";
+celebrate();
+}
+};
+words.appendChild(el);
+});
+
+/* جدول حروف */
+const stages=["عینک","دارو","بیمه","پرستار"];
+let stage=0,found="";
+function loadStage(){
+found="";
+stageTitle.innerText="کلمه: "+stages[stage];
+letters.innerHTML="";
+const pool="ابتثجچحخدذرزسشصضطظعغفقکگلمنوهی".split("").sort(()=>0.5-Math.random());
+pool.slice(0,36).forEach(l=>{
+let d=document.createElement("div");
+d.className="letter";
+d.innerText=l;
+d.onclick=()=>{
+if(stages[stage].includes(l)){
+d.style.background="#3cb371";
+d.style.color="#fff";
+found+=l;
+if([...new Set(found)].length===stages[stage].length){
+celebrate();
+stage++;
+if(stage<stages.length) setTimeout(loadStage,800);
+else stageTitle.innerText="آفرین! همه مراحل کامل شد 🌟";
+}
+}
+}
+letters.appendChild(d);
+});
+}
+loadStage();
+
+/* جدول اعداد */
+const qs=[
+{q:"12 + 8",a:20},
+{q:"30 - 7",a:23},
+{q:"15 + 10",a:25},
+{q:"40 - 18",a:22},
+{q:"9 + 6",a:15}
+];
+let qi=0;
+mathQ.innerText=qs[0].q;
+for(let i=1;i<=100;i++){
+let d=document.createElement("div");
+d.className="number";
+d.innerText=i;
+d.onclick=()=>{
+if(i===qs[qi].a){
+d.classList.add("correct");
+mathMsg.innerText="";
+celebrate();
+qi++;
+if(qi<qs.length) mathQ.innerText=qs[qi].q;
+}else{
+mathMsg.innerText="❌ اشتباه شد، با دقت دوباره امتحان کن";
+}
+}
+numbers.appendChild(d);
+}
+
+/* چت */
+function sendMsg(){
+const txt=chatInput.value;
+if(txt.includes("ریاضی")){
+chatMsg.innerText="نگران نباش 🌸 با هم انجامش میدیم، آماده‌ای؟";
+}else{
+chatMsg.innerText="پیامت دریافت شد 🌸";
+}
+chatInput.value="";
+}
+
+/* ذخیره پیشرفت با localStorage */
+function saveProgress(){
+localStorage.setItem('memory_stage',stage);
+localStorage.setItem('math_index',qi);
+}
+window.addEventListener('beforeunload',saveProgress);
+</script>
+
+</body>
+</html>

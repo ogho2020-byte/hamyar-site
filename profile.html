@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>پروفایل | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fdfdfb;color:#2c2c2c;line-height:1.8}
+header{background:linear-gradient(135deg,#6fcf97,#56ccf2);color:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a, nav button{margin-right:20px;color:#fff;font-weight:600;text-decoration:none;border:none;background:none;cursor:pointer}
+nav a:hover, nav button:hover{text-decoration:underline}
+.section{max-width:600px;margin:40px auto;background:#fff;padding:25px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
+.section h2{text-align:center;margin-bottom:20px}
+.section input{width:100%;padding:12px;margin:8px 0;border-radius:15px;border:1px solid #ccc;font-size:16px}
+.section button{background:#6fcf97;color:#fff;border:none;padding:12px 20px;border-radius:25px;margin-top:10px;cursor:pointer;width:100%;font-weight:600;transition:0.3s}
+.section button:hover{transform:scale(1.03)}
+#profileImg{width:120px;height:120px;border-radius:50%;display:block;margin:0 auto 15px;object-fit:cover;border:2px solid #6fcf97}
+canvas{margin-top:25px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>پروفایل</h1>
+<nav>
+<a href="index.html">خانه</a>
+<button onclick="logout()">خروج از کاربری</button>
+</nav>
+</header>
+
+<div class="section">
+<h2>اطلاعات من</h2>
+<img id="profileImg" src="assets/images/default-user.png">
+<input type="text" id="name" placeholder="نام">
+<input type="text" id="family" placeholder="نام خانوادگی">
+<input type="number" id="age" placeholder="سن">
+<input type="number" id="height" placeholder="قد (cm)">
+<input type="number" id="weight" placeholder="وزن (kg)">
+<input type="text" id="phone" placeholder="شماره تماس">
+<button onclick="saveProfile()">ذخیره اطلاعات</button>
+<button onclick="location.href='index.html'">بازگشت به خانه</button>
+</div>
+
+<div class="section">
+<h2>پیشرفت هفته</h2>
+<canvas id="progressChart" width="400" height="200"></canvas>
+</div>
+
+<script>
+// بارگذاری اطلاعات پروفایل
+function loadProfile(){
+document.getElementById('name').value = localStorage.getItem('userName') || '';
+document.getElementById('family').value = localStorage.getItem('userFamily') || '';
+document.getElementById('phone').value = localStorage.getItem('userPhone') || '';
+document.getElementById('age').value = localStorage.getItem('userAge') || '';
+document.getElementById('height').value = localStorage.getItem('userHeight') || '';
+document.getElementById('weight').value = localStorage.getItem('userWeight') || '';
+const img = localStorage.getItem('userImg');
+if(img) document.getElementById('profileImg').src = img;
+renderChart();
+}
+
+// ذخیره اطلاعات پروفایل
+function saveProfile(){
+localStorage.setItem('userName',document.getElementById('name').value);
+localStorage.setItem('userFamily',document.getElementById('family').value);
+localStorage.setItem('userPhone',document.getElementById('phone').value);
+localStorage.setItem('userAge',document.getElementById('age').value);
+localStorage.setItem('userHeight',document.getElementById('height').value);
+localStorage.setItem('userWeight',document.getElementById('weight').value);
+alert('اطلاعات ذخیره شد');
+}
+
+// خروج از کاربری
+function logout(){
+localStorage.removeItem('userName');
+localStorage.removeItem('userFamily');
+localStorage.removeItem('userPhone');
+localStorage.removeItem('userAge');
+localStorage.removeItem('userHeight');
+localStorage.removeItem('userWeight');
+localStorage.removeItem('userImg');
+alert('شما از کاربری خارج شدید');
+window.location.href='index.html';
+}
+
+// نمودار پیشرفت هفته بر اساس سلامت
+function renderChart(){
+const ctx = document.getElementById('progressChart').getContext('2d');
+const data=[];
+for(let i=0;i<7;i++){
+data.push(localStorage.getItem('day'+(i+1))?1:0);
+}
+const colors = ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF','#FF9F40','#FF6384'];
+new Chart(ctx,{
+type:'bar',
+data:{
+labels:['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'],
+datasets:[{
+label:'تمرین‌های انجام‌شده',
+data:data,
+backgroundColor:colors
+}]
+},
+options:{
+responsive:true,
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true,stepSize:1}}
+}
+});
+}
+
+window.onload = loadProfile;
+</script>
+
+</body>
+</html>
