@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>همیار | همراه سالمندان</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fdfdfb;color:#2c2c2c;line-height:1.9}
+a{text-decoration:none;color:inherit}
+header{background:linear-gradient(135deg,#56ccf2,#6fcf97);color:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a{margin-right:20px;color:#fff;font-weight:600;font-size:16px;text-decoration:none;}
+nav a:hover{text-decoration:underline;}
 
+/* Hero Section */
+.hero{display:flex;align-items:center;padding:50px 40px;gap:30px;flex-wrap:wrap}
+.hero-text{flex:1;min-width:300px}
+.hero-text h2{font-size:36px;font-weight:800;margin-bottom:20px}
+.hero-text p{font-size:18px;max-width:500px;margin-bottom:20px}
+.hero-text .orange-btn{margin-right:10px;padding:12px 25px;font-size:16px;background: linear-gradient(135deg, #f7c77f, #81dba1);color:#fff;border:none;border-radius:35px;cursor:pointer;transition:0.3s;display:inline-block}
+
+.hero-text .orange-btn:hover{transform:scale(1.05)}
+
+.hero-img{flex:1;min-width:300px}
+.hero-img img{width:100%;border-radius:30px;box-shadow:0 15px 30px rgba(0,0,0,0.15)}
+
+section{padding:50px 40px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
+.card{background:#fff;padding:30px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:0.3s;cursor:pointer;text-align:center}
+.card:hover{transform:translateY(-6px)}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav id="mainNav">
+<a href="index.html">خانه</a>
+<a href="health.html">سلامت</a>
+<a href="memory.html">ذهن و حافظه</a>
+<a href="fun.html">سرگرمی</a>
+<a href="books.html">کتاب‌خوان</a>
+<a href="contact.html">ارتباط</a>
+<a href="about.html">درباره ما</a>
+<a href="profile.html">پروفایل</a>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-text">
+<h2>همیار؛ همراهی مطمئن برای روزهای آرام</h2>
+<p>پلتفرمی انسانی و حرفه‌ای برای سالمندان با تمرکز بر سلامت، نشاط ذهن و ارتباط اجتماعی.</p>
+<button class="orange-btn" onclick="location.href='experience.html'">شروع همراهی</button>
+<button class="orange-btn" onclick="location.href='register.html'">عضویت</button>
+</div>
+<div class="hero-img">
+<img src="assets/images/elderly.jpg" alt="سالمندان شاد">
+</div>
+</section>
+
+<section class="cards">
+<div class="card" style="background:#ffdce0" onclick="location.href='health.html'">
+<h4>سلامت و تحرک</h4>
+<p>تمرین‌های ساده، ارتباط با مربی و پیگیری وضعیت جسمی سالمندان.</p>
+</div>
+<div class="card" style="background:#d6ebff" onclick="location.href='memory.html'">
+<h4>ذهن و حافظه</h4>
+<p>بازی‌ها و تمرین‌های علمی برای تقویت حافظه و تمرکز.</p>
+</div>
+<div class="card" style="background:#ffdfb2" onclick="location.href='fun.html'">
+<h4>سرگرمی سالم</h4>
+<p>فعالیت‌های شاد، موسیقی و محتوای متناسب با روحیه سالمندان.</p>
+</div>
+<div class="card" style="background:#d6c1ff" onclick="location.href='books.html'">
+<h4>کتاب‌خوان</h4>
+<p>مطالعه کتاب‌ها و منابع مفید برای سالمندان.</p>
+</div>
+<div class="card" style="background:#c8f0d3" onclick="location.href='contact.html'">
+<h4>ارتباط انسانی</h4>
+<p>ایجاد حس تعلق و ارتباط با مربیان و همراهان همیار.</p>
+</div>
+</section>
+
+</body>
+</html>

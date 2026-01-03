@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ارتباط انسانی | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#e6f4ea;color:#2c2c2c;line-height:1.8}
+a{text-decoration:none;color:inherit}
+header{background:#4caf50;color:#fff;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a{margin-right:15px;color:#fff;font-weight:600;font-size:16px}
+nav a:hover{text-decoration:underline}
+.sub-nav{background:#a8d5a2;color:#000;text-align:center;padding:10px;font-weight:700;font-size:18px}
+.section{padding:20px 30px}
+.post-container{display:flex;flex-direction:column;gap:20px}
+.post{background:#fff;padding:15px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+.post img{max-width:100%;border-radius:12px;margin-bottom:10px}
+.post .like-comment{display:flex;gap:15px;font-size:14px;color:#555;margin-top:8px;cursor:pointer}
+.post .like-comment span:hover{text-decoration:underline}
+.new-post{background:#f0fff0;padding:15px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,0.05);margin-top:20px}
+.new-post textarea{width:100%;padding:8px;border-radius:10px;border:1px solid #ccc;resize:none;margin-bottom:8px}
+.new-post input[type="file"]{margin-bottom:8px}
+.new-post button{background:#4caf50;color:#fff;border:none;padding:8px 15px;border-radius:12px;cursor:pointer}
+.mentor{background:#e6f4ea;padding:15px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,0.1);margin-bottom:15px}
+.mentor h3{margin:0 0 5px 0}
+.mentor p{margin:0 0 8px 0}
+.mentor button{padding:6px 12px;border:none;border-radius:12px;color:#fff;cursor:pointer;font-weight:600;margin-top:5px}
+.mentor .pink{background:#ff69b4}
+.mentor .blue{background:#00bfff}
+.mentor .green{background:#32cd32}
+.mentor .red{background:#ff4c4c}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav>
+<a href="index.html">خانه</a>
+<a href="health.html">سلامت</a>
+<a href="memory.html">ذهن و حافظه</a>
+<a href="fun.html">سرگرمی</a>
+<a href="books.html">کتاب‌خوان</a>
+<a href="contact.html">ارتباط</a>
+<a href="about.html">درباره ما</a>
+<a href="profile.html">پروفایل</a>
+</nav>
+</header>
+
+<div class="sub-nav">📲 بخش ارتباط انسانی</div>
+
+<!-- بخش ۱: ارتباط با همراهان همیار -->
+<section class="section">
+<h2>ارتباط با همراهان همیار</h2>
+<div class="post-container" id="postContainer">
+
+<!-- پست‌های نمونه -->
+<div class="post">
+<p>سلام دوستان! امروز هوا چقدر دلپذیر بود 🌿</p>
+<div class="like-comment"><span>❤️ 12 لایک</span><span>💬 3 کامنت</span></div>
+</div>
+<div class="post">
+<p>یاد گرفتم امروز با یک نفس عمیق آرامش پیدا کنم 🌸</p>
+<div class="like-comment"><span>❤️ 8 لایک</span><span>💬 2 کامنت</span></div>
+</div>
+<div class="post">
+<p>چه روز خوبی برای قدم زدن در پارک بود 🌞</p>
+<div class="like-comment"><span>❤️ 15 لایک</span><span>💬 4 کامنت</span></div>
+</div>
+<div class="post">
+<p>کتاب جدیدی شروع کردم و واقعا آرامش بخشه 📖</p>
+<div class="like-comment"><span>❤️ 10 لایک</span><span>💬 1 کامنت</span></div>
+</div>
+<div class="post">
+<p>امروز یه عکس زیبا از طبیعت گرفتم، حس خوبیه 🌳</p>
+<img src="assets/images/nature1.jpg" alt="طبیعت">
+<div class="like-comment"><span>❤️ 20 لایک</span><span>💬 5 کامنت</span></div>
+</div>
+<div class="post">
+<p>لحظات شادی با دوستانم به یادماندنی بود 💛</p>
+<img src="assets/images/nature2.jpg" alt="طبیعت">
+<div class="like-comment"><span>❤️ 18 لایک</span><span>💬 4 کامنت</span></div>
+</div>
+
+<!-- بخش ارسال پیام کاربر -->
+<div class="new-post">
+<h4>ارسال پیام یا عکس خودت</h4>
+<textarea id="userText" rows="3" placeholder="متن پیام..."></textarea>
+<input type="file" id="userImage" accept="image/*">
+<button onclick="addPost()">ارسال</button>
+</div>
+
+</div>
+</section>
+
+<!-- بخش ۲: ارتباط با مربیان -->
+<section class="section">
+<h2>ارتباط با مربیان همیار</h2>
+
+<div class="mentor">
+<h3>دکتر سلامت</h3>
+<p>سلام🩷 برای ارتقای سلامتیت رو من حساب کن.</p>
+<button class="pink">شروع همیاری ❤️</button>
+</div>
+
+<div class="mentor">
+<h3>مربی ذهن</h3>
+<p>سلام🩵 بهت قول میدم هرگز فراموشی نگیری.</p>
+<button class="blue">شروع همیاری 💙</button>
+</div>
+
+<div class="mentor">
+<h3>روانشناس</h3>
+<p>سلام💚 به کمک من از سردرگمی و تنش ها در امانی.</p>
+<button class="green">شروع همیاری 💚</button>
+</div>
+
+<div class="mentor">
+<h3>کارشناس تغذیه</h3>
+<p>سلام❤️ مطمئن باش با تغذیهٔ سالم به ایده‌آلت نزدیک‌تری.</p>
+<button class="red">شروع همیاری ❤️</button>
+</div>
+
+<script>
+function addPost(){
+const text = document.getElementById('userText').value.trim();
+const fileInput = document.getElementById('userImage');
+const postContainer = document.getElementById('postContainer');
+
+if(!text && fileInput.files.length === 0){
+alert("پیام یا عکس وارد کنید");
+return;
+}
+
+let imgHTML = '';
+if(fileInput.files.length > 0){
+const reader = new FileReader();
+reader.onload = function(e){
+imgHTML = `<img src="${e.target.result}" alt="تصویر">`;
+insertPost();
+}
+reader.readAsDataURL(fileInput.files[0]);
+} else {
+insertPost();
+}
+
+function insertPost(){
+const newPost = document.createElement('div');
+newPost.classList.add('post');
+newPost.innerHTML = `<p>${text}</p>${imgHTML}<div class="like-comment"><span>❤️ 0 لایک</span><span>💬 0 کامنت</span></div>`;
+postContainer.insertBefore(newPost, postContainer.firstChild);
+
+// پاک کردن ورودی‌ها
+document.getElementById('userText').value = '';
+fileInput.value = '';
+}
+}
+</script>
+
+</body>
+</html>

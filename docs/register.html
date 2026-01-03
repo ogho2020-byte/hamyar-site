@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ثبت نام | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fdfdfb;color:#2c2c2c;line-height:1.8}
+header{background:linear-gradient(135deg,#6fcf97,#56ccf2);color:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a{margin-right:20px;color:#fff;font-weight:600;text-decoration:none;}
+nav a:hover{text-decoration:underline;}
+
+.section{max-width:500px;margin:50px auto;background:#fff;padding:30px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
+.section h2{text-align:center;margin-bottom:20px;color:#333}
+.section input{width:100%;padding:12px;margin:10px 0;border-radius:15px;border:1px solid #ccc;font-size:16px}
+.section button{background:#f2994a;color:#fff;border:none;padding:12px 20px;border-radius:25px;margin-top:10px;cursor:pointer;width:100%;font-weight:600;transition:0.3s}
+.section button:hover{transform:scale(1.03)}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav>
+<a href="index.html">خانه</a>
+<a href="profile.html">پروفایل</a>
+</nav>
+</header>
+
+<div class="section">
+<h2>عضویت در همیار</h2>
+<input type="text" id="name" placeholder="نام">
+<input type="text" id="family" placeholder="نام خانوادگی">
+<input type="text" id="phone" placeholder="شماره تماس">
+<button onclick="registerUser()">ثبت نام</button>
+</div>
+
+<script>
+function registerUser(){
+const name=document.getElementById('name').value.trim();
+const family=document.getElementById('family').value.trim();
+const phone=document.getElementById('phone').value.trim();
+if(!name||!family||!phone){alert('لطفاً همه فیلدها را پر کنید');return;}
+localStorage.setItem('userName',name);
+localStorage.setItem('userFamily',family);
+localStorage.setItem('userPhone',phone);
+alert('خوش اومدی💚از امروز تو هم عضو همیار هستی');
+window.location.href='profile.html';
+}
+</script>
+
+</body>
+</html>

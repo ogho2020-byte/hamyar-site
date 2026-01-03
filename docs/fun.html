@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>سرگرمی | همیار</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fff3e0;color:#2c2c2c;line-height:1.8}
+a{text-decoration:none;color:inherit}
+
+/* نوار مشترک */
+header{background:linear-gradient(135deg,#ffb74d,#ff8f00);color:#fff;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:18px}
+header h1{margin:0;font-size:28px;font-weight:800}
+nav a{margin-left:20px;color:#fff;font-weight:600;font-size:18px;text-decoration:none}
+nav a:hover{text-decoration:underline}
+
+/* نوار پایین مشترک با رنگ نارنجی کم رنگ */
+.sub-nav{background:#ffd6a5;text-align:center;padding:12px;margin-bottom:20px;font-weight:700;font-size:18px;color:#000}
+
+/* بخش‌ها */
+.section{padding:40px;max-width:900px;margin:auto}
+.section h2{margin-bottom:20px}
+.music-player, .relax-player, .video-player, .sudoku-player{background:#fff3e0;padding:20px;border-radius:20px;margin-bottom:30px;box-shadow:0 10px 25px rgba(0,0,0,0.08);text-align:center}
+button{padding:10px 20px;border:none;border-radius:15px;background:#ff8f00;color:#fff;font-weight:600;margin:5px;cursor:pointer}
+button:hover{opacity:0.9}
+.audio-container{margin-top:10px}
+.video-container{margin-top:15px}
+.sudoku-grid{display:grid;grid-template-columns:repeat(4,60px);grid-template-rows:repeat(4,60px);gap:5px;justify-content:center}
+.sudoku-grid input{width:60px;height:60px;text-align:center;font-size:20px;border-radius:8px;border:1px solid #ccc}
+.sudoku-grid .fixed{background:#ffd6a5;font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+<h1>همیار</h1>
+<nav>
+<a href="index.html">خانه</a>
+<a href="health.html">سلامت</a>
+<a href="memory.html">ذهن و حافظه</a>
+<a href="fun.html">سرگرمی</a>
+<a href="books.html">کتاب‌خوان</a>
+<a href="contact.html">ارتباط</a>
+<a href="about.html">درباره ما</a>
+<a href="profile.html">پروفایل</a>
+</nav>
+</header>
+
+<div class="sub-nav">🎏 بخش سرگرمی</div>
+
+
+<!-- پلی‌لیست سنتی -->
+<section class="section">
+<h2>موزیک سنتی</h2>
+<div class="music-player">
+<audio id="sonatiPlayer" controls></audio>
+<div class="audio-container">
+<button onclick="prevSong('sonati')">قبلی</button>
+<button onclick="nextSong('sonati')">بعدی</button>
+</div>
+</div>
+</section>
+
+<!-- پلی‌لیست پاپ -->
+<section class="section">
+<h2>موزیک پاپ</h2>
+<div class="music-player">
+<audio id="popPlayer" controls></audio>
+<div class="audio-container">
+<button onclick="prevSong('pop')">قبلی</button>
+<button onclick="nextSong('pop')">بعدی</button>
+</div>
+</div>
+</section>
+
+<!-- پلی‌لیست بی‌کلام -->
+<section class="section">
+<h2>موزیک بی‌کلام</h2>
+<div class="music-player">
+<audio id="calmPlayer" controls></audio>
+<div class="audio-container">
+<button onclick="prevSong('calm')">قبلی</button>
+<button onclick="nextSong('calm')">بعدی</button>
+</div>
+</div>
+</section>
+
+<!-- ویدیو مستند -->
+<section class="section">
+<h2>ویدیو مستند</h2>
+<p>تاحالا آرامگاه مولانارو دیدی؟</p>
+<div class="video-player">
+<video id="documentaryVideo" width="100%" controls>
+<source src="assets/videos/documentary.mp4" type="video/mp4">
+مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
+</video>
+</div>
+</section>
+
+<!-- ویدیو انگیزشی -->
+<section class="section">
+<h2>ویدیو انگیزشی</h2>
+<p>تاحالا از خودت پرسیدی چرا اینجا و چرا در این بدن متولد شدی؟</p>
+<div class="video-player">
+<video id="inspirationalVideo" width="100%" controls>
+<source src="assets/videos/inspirational.mp4" type="video/mp4">
+مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
+</video>
+</div>
+</section>
+
+<!-- جدول سودوکو 4x4 -->
+<section class="section">
+<h2>جدول سودوکو ۴×۴</h2>
+<div class="sudoku-player">
+<div class="sudoku-grid" id="sudokuGrid"></div>
+</div>
+</section>
+
+<!-- بخش آرامش -->
+<section class="section">
+<h2>آرامش</h2>
+<p>لحظه‌ای بنشین، نفس بکش و به زیبایی همین لحظه فکر کن 💚</p>
+<div class="relax-player">
+<video id="relaxVideo" width="100%" controls>
+<source src="assets/videos/relax.mp4" type="video/mp4">
+مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند.
+</video>
+<div class="audio-container">
+<p>موزیک‌های آرامش:</p>
+<audio id="relax1" controls src="assets/music/relax1.mp3"></audio>
+<audio id="relax2" controls src="assets/music/relax2.mp3"></audio>
+</div>
+</div>
+</section>
+
+<script>
+// پلی‌لیست‌ها
+const playlists = {
+sonati:['assets/music/sonati1.mp3','assets/music/sonati2.mp3','assets/music/sonati3.mp3','assets/music/sonati4.mp3','assets/music/sonati5.mp3'],
+pop:['assets/music/pop1.mp3','assets/music/pop2.mp3','assets/music/pop3.mp3','assets/music/pop4.mp3','assets/music/pop5.mp3'],
+calm:['assets/music/calm1.mp3','assets/music/calm2.mp3','assets/music/calm3.mp3','assets/music/calm4.mp3','assets/music/calm5.mp3']
+};
+
+const players = {
+sonati:document.getElementById('sonatiPlayer'),
+pop:document.getElementById('popPlayer'),
+calm:document.getElementById('calmPlayer')
+};
+
+const indices = {sonati:0, pop:0, calm:0};
+
+function loadSong(type){
+players[type].src = playlists[type][indices[type]];
+players[type].pause();
+}
+
+function nextSong(type){
+indices[type] = (indices[type]+1)%playlists[type].length;
+loadSong(type);
+players[type].play();
+}
+
+function prevSong(type){
+indices[type] = (indices[type]-1+playlists[type].length)%playlists[type].length;
+loadSong(type);
+players[type].play();
+}
+
+// بارگذاری اولیه
+loadSong('sonati');
+loadSong('pop');
+loadSong('calm');
+
+// جدول سودوکو ۴×۴
+const sudokuTemplate = [
+[1, '', '', 4],
+['', 3, '', ''],
+['', '', 2, ''],
+[3, '', '', 1]
+];
+
+const grid = document.getElementById('sudokuGrid');
+sudokuTemplate.forEach(row=>{
+row.forEach(cell=>{
+const input = document.createElement('input');
+if(cell!==''){
+input.value = cell;
+input.classList.add('fixed');
+input.readOnly = true;
+}
+grid.appendChild(input);
+});
+});
+</script>
+
+</body>
+</html>
